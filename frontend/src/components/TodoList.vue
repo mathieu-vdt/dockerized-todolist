@@ -42,11 +42,11 @@ export default {
 
 <template>
   <div class="todos-container">
-    <h1>Todos</h1>
+    <h1 class="mb-8 text-3xl font-semibold">Todos</h1>
     <ul class="todos-list">
-      <li v-for="todo in todos" :key="todo.id">
+      <li v-for="todo in todos" :key="todo.id" class="transition ease-in-out delay-50 hover:scale-110">
         <template v-if="todo.isEditing">
-          <input v-model="todo.title" type="text" />
+          <input v-model="todo.title" type="text" class="edit-input" />
           <div class="buttons">
             <button @click="changeTodo(todo)"><font-awesome-icon icon="check" /></button>
             <button @click="todo.isEditing = false"><font-awesome-icon icon="times" /></button>
@@ -80,6 +80,12 @@ export default {
       padding: 0;
       width: 70%;
 
+      .edit-input{
+        padding: 5px;
+        border-radius: 5px;
+        border: solid 1px #ccc;
+        margin-right: 10px;
+      }
       li{
         padding: 10px;
         border-radius: 12px;
@@ -136,5 +142,12 @@ export default {
         background-color: rgb(80, 130, 80);
       }
     }
+  }
+
+  .fa-check{
+    color: green;
+  }
+  .fa-xmark{
+    color: rgb(158, 0, 0);
   }
 </style>
