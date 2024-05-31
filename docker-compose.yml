@@ -1,0 +1,36 @@
+services:
+  db:
+    container_name: db
+    image: mysql
+    environment:
+      MYSQL_DATABASE: todolist
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  api:
+    container_name: api
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=mysql://user:password@db:3306/todolist
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile # Ensure this is the correct path to your Vue Dockerfile
+  #   ports:
+  #     - "5000:5000"
+  #   depends_on:
+  #     - api
+volumes:
+  mysql_data:
