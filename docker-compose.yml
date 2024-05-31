@@ -24,13 +24,13 @@ services:
     environment:
       - DATABASE_URL=mysql://user:password@db:3306/todolist
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile # Ensure this is the correct path to your Vue Dockerfile
-    ports:
-      - "5000:5000"
-    depends_on:
-      - api
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile # Ensure this is the correct path to your Vue Dockerfile
+  #   ports:
+  #     - "5000:5000"
+  #   depends_on:
+  #     - api
 volumes:
   mysql_data:
